@@ -1,5 +1,6 @@
 # directory-py
 A program for save people's name, surname and age like directory. Written by Python.
+![Screenshot](ss.png)
 
 # libraries
 tkinter, json, os
@@ -13,6 +14,7 @@ class person:
         self.age = age
    
 # create new person method
+![Screenshot](ss2.png)
 def new_person():
 
     new_tk = tk.Tk()
@@ -62,6 +64,7 @@ def delete_person():
         tree.delete(tree.selection())
         
 # edit person method
+![Screenshot](ss3.png)
 def edit_person():
 
     edit_wanted_person = tree.item(tree.selection())["values"][0]
