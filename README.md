@@ -113,43 +113,63 @@ def edit_person():
 codes:
 
   > root = tk.Tk()
+  
   > root.title("Directory")
+  
   > root.geometry('625x350')
+  
   > root.resizable(False, False)
 
   > tree = ttk.Treeview(root, columns=('id', 'name', 'surname', 'age'), show='headings')
+  
   > tree.heading('id', text='ID')
+  
   > tree.heading('name', text='Name')
+  
   > tree.heading('surname', text='Surname')
+  
   > tree.heading('age', text='Age')
+  
   > tree.column(0, width=5)
 
   > scrollbar = ttk.Scrollbar(root, orient=tk.VERTICAL, command=tree.yview)
+  
   > tree.configure(yscrollcommand=scrollbar.set)
+  
   > scrollbar.grid(row=0, column=1, sticky='ns')
+  
   > tree.grid(row=0, column=0, sticky='ew')
 
   > new_person_btn = tk.Button(text='New', command=new_person, font=('Calibri', 15),bg='lightgreen')
+  
   > new_person_btn.grid(row=1, column=0, sticky='we')
+  
   > delete_person_btn = tk.Button(text='Delete', command=delete_person, font=('Calibri', 15), bg='lightpink')
+  
   > delete_person_btn.grid(row=2, column=0, sticky='ew')
+  
   > edit_person_btn = tk.Button(text='Edit', command=edit_person, font=('Calibri', 15), bg='lightblue')
+  
   > edit_person_btn.grid(row=3, column=0, sticky='ew')
 
 > try:
-    > with open("jsons/count.txt", "r") as read:
-        > count = int(read.read())
-    > for i in range(count):
-        > try:
-            > with open(f"jsons/info_save{i}.json", 'r') as read_file:
-                > saves = json.loads(read_file.read())
-                > for i in saves:
-                    > infos = []
-                    > infos.append((saves[i]['id'], saves[i]['name'], saves[i]['surname'], saves[i]['age']))
-                    > for info in infos:
-                        > tree.insert('', tk.END, values=info)
-        > except:
-            > pass
+
+    with open("jsons/count.txt", "r") as read:
+    
+        count = int(read.read())
+    for i in range(count):
+        try:
+            with open(f"jsons/info_save{i}.json", 'r') as read_file:
+                saves = json.loads(read_file.read())
+                for i in saves:
+                    infos = []
+                    infos.append((saves[i]['id'], saves[i]['name'], saves[i]['surname'], saves[i]['age']))
+                    for info in infos:
+                        tree.insert('', tk.END, values=info)
+        except:
+            pass
 > except:
-    > pass
+
+    pass
+    
 > root.mainloop()
